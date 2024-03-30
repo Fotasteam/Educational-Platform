@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Educational Platform (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Educational Platform (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
