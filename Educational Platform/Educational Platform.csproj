@@ -12,8 +12,9 @@
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Windows\Learn\ProblemSolving.xaml" />
+    <None Remove="Windows\Misc\Help.xaml" />
     <None Remove="Windows\Misc\MainPage.xaml" />
-    <None Remove="Windows\Tests\ProblemSolving.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.WinUI.UI" Version="7.1.2" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.4.230913002" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
     <Manifest Include="$(ApplicationManifest)" />
@@ -41,7 +43,9 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Windows\Learn\" />
+    <Page Update="Windows\Learn\ProblemSolving.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Windows\Misc\MainPage.xaml">
@@ -49,7 +53,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Windows\Tests\ProblemSolving.xaml">
+    <Folder Include="Windows\Tests\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Windows\Misc\Help.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

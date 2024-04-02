@@ -7,31 +7,72 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Window.SystemBackdrop>
+        <MicaBackdrop Kind="Base"/>
+    </Window.SystemBackdrop>
 
-    <Grid Background="{StaticResource LayerOnMicaBaseAltFillColorDefaultBrush}">
-        <Grid x:Name="AppTitleBar" Grid.Column="1" VerticalAlignment="Top" Background="Transparent" Height="40">
+
+    <Grid x:Name="MainGridBackground" Background="Transparent">
+        <Grid x:Name="AppTitleBar" Grid.Column="1" VerticalAlignment="Top" Canvas.ZIndex="1" Height="40">
             <TextBlock x:Name="AppTitle" Text="Swiftly" VerticalAlignment="Center" Margin="60,0,0,0" />
         </Grid>
 
-        <NavigationView x:Name="NavViewMain" SelectionChanged="NavViewMain_SelectionChanged">
-            <NavigationView.MenuItems>
-                <NavigationViewItem Icon="Home" Content="Main Page" x:Name="NavItemDefault" Tag="MainPage" SelectsOnInvoked="True"/>
-                <NavigationViewItemHeader Content="Learn"/>
-                <NavigationViewItem Content="Problem Solving" Tag="TESTSProblemSolving">
-                    <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE9D9;"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                <NavigationViewItem Icon="Keyboard" Content="Languages" Tag="tagMainPage"/>
-                <NavigationViewItemHeader Content="Learn"/>
-                <NavigationViewItemHeader Content="Tests"/>
-                <NavigationViewItem Icon="Page2" Content="Test 1" Tag="tagMainPage"/>
-            </NavigationView.MenuItems>
-            <NavigationView.FooterMenuItems>
-                <NavigationViewItem Icon="Help" Content="Help" Tag="tagHelp"/>
-                <NavigationViewItem Icon="Contact"  Content="Profile" Tag="tagProfile"/>
-            </NavigationView.FooterMenuItems>
-            <Frame x:Name="contentFrame" Margin="0,40,0,0" CornerRadius="8"/>
-        </NavigationView>
+        <Grid>
+            <NavigationView x:Name="NavViewMain"
+                        SelectionChanged="NavViewMain_SelectionChanged"
+                        PaneTitle="Browser"
+                        Background="Transparent"
+                        IsTitleBarAutoPaddingEnabled="True"
+                        Canvas.ZIndex="0"
+                        IsBackButtonVisible="Collapsed"
+                            Margin="0,40,0,0">
+                <Frame x:Name="contentFrame" Margin="0,00,0,0" CornerRadius="8" Background="Transparent"/>
+                <NavigationView.MenuItems>
+                    <NavigationViewItem Icon="Home" Content="Main Page" x:Name="NavItemDefault" Tag="MainPage" SelectsOnInvoked="True"/>
+                    <NavigationViewItemHeader Content="Learn"/>
+                    <NavigationViewItem Content="Problem Solving" Tag="LEARNProblemSolving">
+                        <NavigationViewItem.Icon>
+                            <FontIcon Glyph="&#xE9D9;"/>
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                    <NavigationViewItem Icon="Keyboard" Content="Languages" SelectsOnInvoked="False">
+                        <NavigationViewItem.MenuItems>
+                            <NavigationViewItem Content="C#"/>
+                            <NavigationViewItem Content="C++"/>
+                            <NavigationViewItem Content="Python"/>
+                            <NavigationViewItem Content="Java"/>
+                            <NavigationViewItem Content="Visual Basic"/>
+                        </NavigationViewItem.MenuItems>
+                    </NavigationViewItem>
+                    <NavigationViewItem Icon="Accept" Content="Topics" SelectsOnInvoked="False">
+                        <NavigationViewItem.MenuItems>
+                            <NavigationViewItem Content="Algorithms"/>
+                            <NavigationViewItem Content="Mathematics"/>
+                            <NavigationViewItem Content="Applied Computer Science"/>
+                        </NavigationViewItem.MenuItems>
+                    </NavigationViewItem>
+                    <NavigationViewItemHeader Content="Tests"/>
+                    <NavigationViewItem Icon="Page2" Content="Theoretical" SelectsOnInvoked="False">
+                        <NavigationViewItem.MenuItems>
+                            <NavigationViewItem Content="Test 1"/>
+                            <NavigationViewItem Content="Test 2"/>
+                            <NavigationViewItem Content="Test 3"/>
+                        </NavigationViewItem.MenuItems>
+                    </NavigationViewItem>
+                    <NavigationViewItem Icon="TwoPage" Content="Practical" SelectsOnInvoked="False">
+                        <NavigationViewItem.MenuItems>
+                            <NavigationViewItem Content="Test 1"/>
+                            <NavigationViewItem Content="Test 2"/>
+                            <NavigationViewItem Content="Test 3"/>
+                        </NavigationViewItem.MenuItems>
+                    </NavigationViewItem>
+                    <NavigationViewItemHeader Content="Projects"/>
+                </NavigationView.MenuItems>
+                <NavigationView.FooterMenuItems>
+                    <NavigationViewItem Icon="Help" Content="Help" Tag="Help"/>
+                    <NavigationViewItem Icon="Contact"  Content="Profile" Tag="Profile"/>
+                </NavigationView.FooterMenuItems>
+            </NavigationView>
+        </Grid>
     </Grid>
 </Window>

@@ -1,19 +1,12 @@
 using Microsoft.UI.Composition.SystemBackdrops;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
+using Educational_Platform.Scripts;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Xml.Linq;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.UI;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -32,10 +25,40 @@ namespace Educational_Platform
 
             this.InitializeComponent();
 
-            if (DesktopAcrylicController.IsSupported())
-                SystemBackdrop = new DesktopAcrylicBackdrop();
+            Microsoft.UI.Xaml.Media.MicaBackdrop micaBackdrop = new Microsoft.UI.Xaml.Media.MicaBackdrop();
+            micaBackdrop.Kind = MicaKind.Base;
+            this.SystemBackdrop = micaBackdrop;
+
             NavViewMain.SelectedItem = NavItemDefault;
+
+            //InitializeNavViewMainItems(NavViewItemsReader.downloadedItems());
         }
+
+        //public void InitializeNavViewMainItems(List<NavViewItem> listOfAllItems)
+        //{
+        //    foreach (NavViewItem element in listOfAllItems)
+        //    {
+        //        var itemToAdd = new NavigationViewItem() { Content = element.Name, Tag = element.Tag };
+
+        //        FontIcon icon = new FontIcon();
+        //        icon.Glyph = element.Icon;
+        //        itemToAdd.Icon = icon;
+        //        bool firstTimeCategory2 = false;
+        //        switch (element.Category)
+        //        {
+        //            case 0:
+        //                NavViewMain.MenuItems.Add(itemToAdd);
+        //                break;
+        //            case 1:
+        //                NavViewMain.FooterMenuItems.Add(itemToAdd);
+        //                break;
+        //            case 2:
+        //                if (!firstTimeCategory2) {  firstTimeCategory2 = true; }
+        //                NavViewMain.MenuItems.Add(itemToAdd);
+        //                break;
+        //        }
+        //    }
+        //}
 
         private void NavViewMain_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {

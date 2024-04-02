@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Net.Http;
 using System.IO;
+using System.Net;
 
 namespace Educational_Platform.Scripts
 {
@@ -10,17 +10,20 @@ namespace Educational_Platform.Scripts
         public string Name { get; set; }
         public string Tag { get; set; }
         public string Icon { get; set; }
-        public bool isIconFontType { get; set; }
+        public int Category { get; set; }
     }
 
     public class NavViewItemsReader
     {
-        HttpClient client = new HttpClient();
-
-        public List<NavViewItem> downloadedItems()
+        public static async Task<string> downloadList()
         {
-            Task<string> downloadList = client.GetStringAsync("");
-            string result = downloadList.Result;
+            var wc = new WebClient();
+            return wc.DownloadString("https://raw.githubusercontent.com/Fotasteam/Educational-Platform/master/Data/listOfNavViewItems.data");
+        }
+
+        public static List<NavViewItem> downloadedItems()
+        {
+            string result = downloadList().Result;
 
             List<NavViewItem> items = new List<NavViewItem>();
 
@@ -52,9 +55,10 @@ namespace Educational_Platform.Scripts
                                     currentPhase = 3;
                                     break;
                                 case 3:
-                                    item.isIconFontType = currentPhase == 1 ? true : false;
-                                    break;                                    
+                                    item.Category = int.Parse(currentElements);
+                                    break;
                             }
+                            currentElements = "";
                         }
                         else currentElements += character; 
 

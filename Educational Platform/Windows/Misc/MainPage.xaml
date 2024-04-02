@@ -10,29 +10,62 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     xmlns:local1="using:Educational_Platform.Windows.Misc">
 
-    <Grid>
-        <GridView Height="350"
-                  CharacterSpacing="150"
+    <ScrollViewer>
+        <StackPanel Background="{ThemeResource LayerOnMicaBaseAltFillColorDefault}"
+            Spacing="50"
+            Orientation="Vertical">
+            <StackPanel Spacing="10" Orientation="Vertical" Margin="100,50,0,0">
+                <TextBlock Text="Main Page" FontSize="45" Foreground="{ThemeResource TextFillColorPrimaryBrush}"/>
+                <TextBlock Text="Check out other ways to expand your knowledge." FontSize="20" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+            </StackPanel>
+            <Grid Height="Auto"
+          VerticalAlignment="Top"
+          Background="Transparent">
+                <GridView Height="Auto"
                   VerticalAlignment="Top"
                   HorizontalAlignment="Center"
                   x:Name="CardsGridView" SelectionMode="None">
-            <GridView.ItemTemplate>
-                <DataTemplate x:DataType="local1:MainPageCardTemplate">
-                    <StackPanel Height="300"
-                                MinWidth="200"
-                                Spacing="10">
-                        <Image Margin="20,20,0,0" Stretch="Uniform" Source="{x:Bind ImageLink}" Width="50" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                        <TextBlock Text="{x:Bind Name}" FontSize="25" Margin="30,0,0,0"/>
-                        <TextBlock Text="{x:Bind Description}" FontSize="10" TextWrapping="WrapWholeWords"/>
-                        <HyperlinkButton NavigateUri="{x:Bind LinkOnClick}" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-                            <HyperlinkButton.Content>
-                                <FontIcon Glyph="&#xEDA7;"/>
-                            </HyperlinkButton.Content>
-                        </HyperlinkButton>
-                    </StackPanel>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
-
-    </Grid>
+                    <GridView.ItemContainerStyle>
+                        <Style TargetType="GridViewItem" BasedOn="{StaticResource DefaultGridViewItemStyle}">
+                            <Setter Property="Margin" Value="40, 10, 9, 10"/>
+                        </Style>
+                    </GridView.ItemContainerStyle>
+                    <GridView.ItemTemplate>
+                        <DataTemplate x:DataType="local1:MainPageCardTemplate">
+                            <Button Height="270"
+                            Width="220"
+                            CornerRadius="10"
+                            BorderThickness="1"
+                            Command="{x:Bind WebsiteOpeningCommand}"
+                            CommandParameter="{x:Bind LinkOnClick}"
+                            >
+                                <Grid Height="250"
+                              Width="200"
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Center">
+                                    <Image Margin="20,20,0,0" Stretch="Uniform" Source="{x:Bind ImageLink}" Width="60" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                    <StackPanel Margin="20,0,20,55" VerticalAlignment="Bottom" Spacing="10">
+                                        <TextBlock Text="{x:Bind Name}" FontSize="22"  Foreground="{ThemeResource TextFillColorPrimaryBrush}"/>
+                                        <TextBlock Text="{x:Bind Description}" FontSize="12" TextWrapping="WrapWholeWords" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                                    </StackPanel>
+                                    <FontIcon Glyph="&#xEDA7;" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,10,10"/>
+                                </Grid>
+                            </Button>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid MaximumRowsOrColumns="7" Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                </GridView>
+            </Grid>
+            <StackPanel Spacing="10" Orientation="Vertical" Margin="100,50,0,0">
+                <TextBlock Text="How does it work?" FontSize="25" Foreground="{ThemeResource TextFillColorPrimaryBrush}"/>
+                <TextBlock FontSize="20" Foreground="{ThemeResource TextFillColorSecondaryBrush}" >
+                    To be finished...
+                </TextBlock>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
 </Page>
